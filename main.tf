@@ -24,7 +24,7 @@ resource "ibm_is_instance" "Instance" {
 	keys = [data.ibm_is_ssh_key.SshKey.id]
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.ProjectTag)])
+		join(":", ["project", lower(local.UserProjectTag)])
 	]
 }
 
@@ -34,7 +34,7 @@ resource "ibm_is_floating_ip" "Eth0FloatingIp" {
 	target = ibm_is_instance.Instance[0].primary_network_interface[0].id
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.ProjectTag)])
+		join(":", ["project", lower(local.UserProjectTag)])
 	]
 }
 
@@ -57,7 +57,7 @@ resource "ibm_is_instance" "InstanceSingleIntf" {
 	keys = [data.ibm_is_ssh_key.SshKey.id]
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.ProjectTag)])
+		join(":", ["project", lower(local.UserProjectTag)])
 	]
 }
 
@@ -67,6 +67,6 @@ resource "ibm_is_floating_ip" "Eth0FloatingIpSingleIntf" {
 	target = ibm_is_instance.InstanceSingleIntf[0].primary_network_interface[0].id
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.ProjectTag)])
+		join(":", ["project", lower(local.UserProjectTag)])
 	]
 }
