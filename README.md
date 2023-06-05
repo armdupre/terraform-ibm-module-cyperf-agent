@@ -1,1 +1,1 @@
-# terraform-ibm-module-cyperf-agent
+# module-cyperf-agent/ibm
