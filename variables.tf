@@ -49,10 +49,6 @@ variable "InstanceProfile" {
 	}
 }
 
-variable "SshKeyName" {
-	type = string
-}
-
 variable "Tag" {
 	default = "cyperf"
 	type = string

@@ -1,15 +1,3 @@
-output "Eth0FloatingIp" {
-	value = {
-		"address" : ibm_is_floating_ip.Eth0FloatingIp[*].address
-	}
-}
-
-output "Eth0FloatingIpSingleIntf" {
-	value = {
-		"address" : ibm_is_floating_ip.Eth0FloatingIpSingleIntf[*].address
-	}
-}
-
 output "Image" {
 	value = {
 		"name" : data.ibm_is_image.Image.name

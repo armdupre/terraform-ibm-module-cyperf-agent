@@ -21,17 +21,7 @@ resource "ibm_is_instance" "Instance" {
 	}
 	vpc = data.ibm_is_vpc.Vpc.id
 	zone = local.Zone
-	keys = [data.ibm_is_ssh_key.SshKey.id]
-	tags = [
-		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.UserProjectTag)])
-	]
-}
-
-resource "ibm_is_floating_ip" "Eth0FloatingIp" {
-	count = local.AllowMgmtIntfForTest ? 0 : 1
-	name = local.Eth0FloatingIpName
-	target = ibm_is_instance.Instance[0].primary_network_interface[0].id
+	keys = []
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
 		join(":", ["project", lower(local.UserProjectTag)])
@@ -54,17 +44,7 @@ resource "ibm_is_instance" "InstanceSingleIntf" {
 	}
 	vpc = data.ibm_is_vpc.Vpc.id
 	zone = local.Zone
-	keys = [data.ibm_is_ssh_key.SshKey.id]
-	tags = [
-		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
-		join(":", ["project", lower(local.UserProjectTag)])
-	]
-}
-
-resource "ibm_is_floating_ip" "Eth0FloatingIpSingleIntf" {
-	count = local.AllowMgmtIntfForTest ? 1 : 0
-	name = local.Eth0FloatingIpName
-	target = ibm_is_instance.InstanceSingleIntf[0].primary_network_interface[0].id
+	keys = []
 	tags = [
 		join(":", ["owner", replace(replace(local.UserEmailTag, ".", "-"), "@", "-")]),
 		join(":", ["project", lower(local.UserProjectTag)])

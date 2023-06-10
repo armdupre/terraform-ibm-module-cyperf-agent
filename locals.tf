@@ -12,7 +12,6 @@ locals {
 	InstanceName = "${local.Preamble}-instance"
 	InstanceProfile = var.InstanceProfile
 	Preamble = "${local.UserLoginTag}-${local.Tag}-${local.Version}-${local.InstanceId}"
-	SshKeyName = var.SshKeyName
 	Tag = var.Tag
 	UserEmailTag = var.UserEmailTag
 	UserLoginTag = var.UserLoginTag
