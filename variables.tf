@@ -31,7 +31,7 @@ variable "Eth1SubnetName" {
 }
 
 variable "ImageName" {
-	default = "cyperf-agent-1-0-3-523"
+	default = "cyperf-agent-2-6-image"
 	type = string
 }
 
@@ -78,7 +78,7 @@ variable "UserProjectTag" {
 }
 
 variable "Version" {
-	default = "2-10"
+	default = "2-6"
 	type = string
 }
 
