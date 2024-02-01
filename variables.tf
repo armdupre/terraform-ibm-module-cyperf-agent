@@ -1,8 +1,3 @@
-variable "AllowMgmtIntfForTest" {
-	default = false
-	type = bool
-}
-
 variable "AppEth0IpAddress" {
 	type = string
 }
@@ -20,16 +15,6 @@ variable "Eth0SubnetName" {
 	type = string
 }
 
-variable "Eth1PrivateIpAddresses" {
-	default = [ "10.0.2.12" ]
-	type = list(string)
-}
-
-variable "Eth1SubnetName" {
-	default = null
-	type = string
-}
-
 variable "ImageName" {
 	default = "cyperf-agent-2-6-image"
 	type = string
@@ -44,9 +29,17 @@ variable "InstanceProfile" {
 	default = "cx2-8x16"
 	type = string
 	validation {
-		condition = can(regex("cx2-16x32", var.InstanceProfile)) || can(regex("cx2-8x16", var.InstanceProfile)) || can(regex("cx2-4x8", var.InstanceProfile))
-		error_message = "InstanceProfile must be one of (cx2-16x32 | cx2-8x16 | cx2-4x8) sizes."
+		condition = contains([	"cx2-4x8", "cx2-8x16", "cx2-16x32"
+							], var.InstanceProfile)
+		error_message = <<EOF
+InstanceProfile must be one of the following sizes:
+	cx2-4x8, cx2-8x16, cx2-16x32
+		EOF
 	}
+}
+
+variable "SshKeyName" {
+	type = string
 }
 
 variable "Tag" {
